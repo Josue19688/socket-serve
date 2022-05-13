@@ -37,14 +37,27 @@ export default class ServerSocket{
     }
 
     private escucharSockets(){
-        console.log('Escuchando conexiones');
+       
 
         this.io.on('connection',cliente=>{
-            console.log('Nuevo Cliente conectado');
+            /**
+             * Configurar usuario
+             */
+
+            socket.conectarClinte(cliente);
+             socket.loginWS(cliente,this.io);
+
+
+
+
+
+
+
             //aqui iran todos los metodos que quiero emitir 
             //o escuchar de los sockets
             socket.desconectar(cliente);
             socket.mensaje(cliente,this.io);
+          
 
 
         })
