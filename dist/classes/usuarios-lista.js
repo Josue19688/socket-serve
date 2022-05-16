@@ -21,7 +21,7 @@ class UserList {
         console.log(this.lista);
     }
     getLista() {
-        return this.lista;
+        return this.lista.filter(usuario => usuario.nombre !== 'Sin nombre');
     }
     getUsuario(id) {
         return this.lista.find(usuario => usuario.id === id);
@@ -33,7 +33,7 @@ class UserList {
     borrarUsuario(id) {
         const tempUser = this.getUsuario(id);
         this.lista = this.lista.filter(usuario => usuario.id !== id);
-        console.log(this.lista);
+        //console.log(this.lista);
         return tempUser;
     }
 }

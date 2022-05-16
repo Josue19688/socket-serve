@@ -23,7 +23,7 @@ export class UserList{
     }
 
     public getLista(){
-        return this.lista;
+        return this.lista.filter(usuario=>usuario.nombre!=='Sin nombre');
     }
 
     public getUsuario(id:string){
@@ -41,7 +41,7 @@ export class UserList{
         const tempUser= this.getUsuario(id);
 
         this.lista=this.lista.filter(usuario=>usuario.id!==id);
-        console.log(this.lista);
+        //console.log(this.lista);
         return tempUser;
     }
 }

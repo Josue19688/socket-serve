@@ -8,15 +8,17 @@ import { Usuario } from "../classes/usuario";
 export const usuarioConectados=new UserList();
 
 
-export const conectarClinte=(cliente:Socket)=>{
+export const conectarClinte=(cliente:Socket,io:socketIO.Server)=>{
 
     const usuario = new Usuario(cliente.id);
     usuarioConectados.agregar(usuario);
+    io.emit('usuarios-activos',usuarioConectados.getLista());
 }
 
-export const desconectar = (cliente:Socket)=>{
+export const desconectar = (cliente:Socket,io:socketIO.Server)=>{
     cliente.on('disconnect',()=>{
         usuarioConectados.borrarUsuario(cliente.id);
+       
     })
 }
 
@@ -32,9 +34,20 @@ export const mensaje=(cliente:Socket, io:socketIO.Server)=>{
 export const loginWS=(cliente:Socket,io:socketIO.Server)=>{
     cliente.on('configurar-usuario',(payload:{nombre:string}, callback:Function)=>{
         usuarioConectados.actualizarNombre(cliente.id,payload.nombre);
+        io.emit('usuarios-activos',usuarioConectados.getLista());
         callback({
             ok:true,
             mensaje:`Usuario ${payload.nombre}, configurado`
         })
+    })
+}
+
+//obtener usuarios para cuando entramos nos cargue toda la lista
+
+export const obtenerUsuarios=(cliente:Socket,io:socketIO.Server)=>{
+    cliente.on('obtener-usuarios',()=>{
+       
+        io.to(cliente.id).emit('usuarios-activos',usuarioConectados.getLista());
+    
     })
 }

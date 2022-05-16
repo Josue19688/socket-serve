@@ -2,7 +2,7 @@
 
 import {Router, Request, Response} from 'express';
 import {getMensajes,mensajes,postMensajes} from '../controllers/mensajesController';
-import { getUsuarios } from '../controllers/usuariosController';
+import { getUsuarios,getUsuariosDetalles } from '../controllers/usuariosController';
 
 
 export const router = Router();
@@ -12,3 +12,7 @@ router.get('/mensajes',getMensajes);
 router.post('/mensajes/:id',postMensajes);
 
 router.get('/usuarios',getUsuarios);
+router.get('/usuarios/detalle',getUsuariosDetalles);
+
+
+

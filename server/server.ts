@@ -44,18 +44,19 @@ export default class ServerSocket{
              * Configurar usuario
              */
 
-            socket.conectarClinte(cliente);
+            socket.conectarClinte(cliente,this.io);
              socket.loginWS(cliente,this.io);
 
 
-
+            //obtener usuarios activos
+            socket.obtenerUsuarios(cliente, this.io);
 
 
 
 
             //aqui iran todos los metodos que quiero emitir 
             //o escuchar de los sockets
-            socket.desconectar(cliente);
+            socket.desconectar(cliente,this.io);
             socket.mensaje(cliente,this.io);
           
 
