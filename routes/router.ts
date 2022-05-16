@@ -10,4 +10,5 @@ export const router = Router();
 router.post('/mensajes',mensajes);
 router.get('/mensajes',getMensajes);
 router.post('/mensajes/:id',postMensajes);
+
 router.get('/usuarios',getUsuarios);
