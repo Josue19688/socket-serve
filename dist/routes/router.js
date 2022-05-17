@@ -10,3 +10,4 @@ exports.router.get('/mensajes', mensajesController_1.getMensajes);
 exports.router.post('/mensajes/:id', mensajesController_1.postMensajes);
 exports.router.get('/usuarios', usuariosController_1.getUsuarios);
 exports.router.get('/usuarios/detalle', usuariosController_1.getUsuariosDetalles);
+exports.router.get('/userdb', usuariosController_1.getUsuariosDB);

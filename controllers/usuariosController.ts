@@ -3,6 +3,7 @@ import { Request, Response} from 'express';
 import ServerSocket from '../server/server';
 import { Socket } from 'socket.io';
 import { usuarioConectados } from '../sockets/sockets';
+import MySQL from '../mysql/mysql';
 
 
 //metodod para obtener los usuarios conectados via socket
@@ -35,6 +36,29 @@ export const getUsuariosDetalles=((req:Request,res:Response)=>{
 })
 
 
+export const getUsuariosDB=((req:Request,res:Response)=>{
+    const query=`
+    SELECT * FROM usuarios
+    `;
+
+    MySQL.ejecutarQuery(query,(err:any,usuarios:Object[])=>{
+        if(err){
+            res.status(400).json({
+                ok:false,
+                error:err
+            })
+        }else{
+            res.json({
+                ok:true,
+                usuarios
+            })
+        }
+
+
+    })
+
+
+});
 
 
 
