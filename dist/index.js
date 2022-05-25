@@ -7,6 +7,8 @@ const server_1 = __importDefault(require("./server/server"));
 const router_1 = require("./routes/router");
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const bot_1 = require("./bot/bot");
+(0, bot_1.botTelegram)();
 const server = server_1.default.instance;
 server.app.use(express_1.default.json());
 server.app.use((0, cors_1.default)());
