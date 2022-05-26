@@ -16,6 +16,8 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-validator": "^6.14.0",
+    "moment": "^2.29.3",
+    "moment-timezone": "^0.5.34",
     "mysql": "github:mysqljs/mysql",
     "node-telegram-bot-api": "^0.57.0",
     "socket.io": "^4.5.0"
