@@ -55,8 +55,8 @@ const botTelegram = () => {
             if (data == 'boton1') {
                 const cuerpo = 'saliendo';
                 const myId = accionboton.from.id;
-                const nombre = accionboton.from.first_name;
-                const de = accionboton.from.username;
+                const de = accionboton.from.first_name;
+                //const de = accionboton.from.username;
                 const payload = {
                     de,
                     cuerpo
@@ -69,8 +69,8 @@ const botTelegram = () => {
             if (data == 'boton2') {
                 const cuerpo = 'ingresando';
                 const myId = accionboton.from.id;
-                const nombre = accionboton.from.first_name;
-                const de = accionboton.from.username;
+                const de = accionboton.from.first_name;
+                //const de = accionboton.from.username;
                 const payload = {
                     de,
                     cuerpo

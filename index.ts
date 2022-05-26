@@ -1,5 +1,6 @@
 import ServerSocket from "./server/server";
 import { router } from "./routes/router";
+import bodyparser from "body-parser";
 import express from 'express';
 import cors from "cors";
 import { botTelegram } from './bot/bot';
@@ -15,7 +16,8 @@ botTelegram();
 const server = ServerSocket.instance;
 
 
-server.app.use(express.json())
+server.app.use(bodyparser.urlencoded({ extended: false }));
+server.app.use(bodyparser.json())
 
 server.app.use(cors());
 

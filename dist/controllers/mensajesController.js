@@ -13,6 +13,7 @@ exports.mensajes = ((req, res) => {
         de,
         cuerpo
     };
+    console.log(payload);
     const server = server_1.default.instance;
     server.io.emit('mensaje-nuevo', payload);
     res.json({

@@ -9,11 +9,13 @@ export const mensajes=((req:Request, res:Response)=>{
     const cuerpo =  req.body.cuerpo;
     const de = req.body.de;
 
+   
+
     const payload={
         de,
         cuerpo
     }
-
+    console.log(payload);
     const server = ServerSocket.instance;
     server.io.emit('mensaje-nuevo',payload);
     
