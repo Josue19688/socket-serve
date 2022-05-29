@@ -4,6 +4,7 @@ import { Server } from "socket.io";
 import http from 'http';
 
 import * as socket from '../sockets/sockets';
+import db from '../mysql/connection';
 
 
 export default class ServerSocket{
@@ -28,8 +29,17 @@ export default class ServerSocket{
               credentials: true
             }
           });
-
+        this.dbConnection()
         this.escucharSockets();
+    }
+
+    async dbConnection(){
+        try {
+            await db.authenticate();
+            console.log('Database online');
+        } catch (error:any) {
+            throw new Error(error);
+        }
     }
 
     public static get instance(){
