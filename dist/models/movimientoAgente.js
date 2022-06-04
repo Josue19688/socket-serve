@@ -13,15 +13,25 @@ const MovimientoAgente = connection_1.default.define('T10_movimientoAgente', {
     nombre: {
         type: sequelize_1.DataTypes.STRING
     },
+    unico: {
+        type: sequelize_1.DataTypes.STRING
+    },
     accion: {
         type: sequelize_1.DataTypes.STRING
     },
     estado: {
         type: sequelize_1.DataTypes.INTEGER
     },
-    fechasalida: {
-        type: sequelize_1.DataTypes.DATE,
-        defaultValue: sequelize_1.DataTypes.NOW
-    }
+    ingreso: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    created_at: {
+        type: sequelize_1.DataTypes.DATE
+    },
+    updated_at: {
+        type: sequelize_1.DataTypes.DATE
+    },
+}, {
+    timestamps: false
 });
 exports.default = MovimientoAgente;

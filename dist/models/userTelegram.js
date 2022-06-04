@@ -16,9 +16,13 @@ const UsuarioTelegram = connection_1.default.define('T10_usuarioTelegram', {
     telefono: {
         type: sequelize_1.DataTypes.STRING
     },
-    fechaCreacion: {
-        type: sequelize_1.DataTypes.DATE,
-        defaultValue: sequelize_1.DataTypes.NOW
-    }
+    created_at: {
+        type: sequelize_1.DataTypes.DATE
+    },
+    updated_at: {
+        type: sequelize_1.DataTypes.DATE
+    },
+}, {
+    timestamps: false
 });
 exports.default = UsuarioTelegram;

@@ -14,11 +14,17 @@ const UsuarioTelegram = db.define('T10_usuarioTelegram',{
     telefono:{
         type:DataTypes.STRING
     },
-    fechaCreacion:{
-        type:DataTypes.DATE,
-        defaultValue:DataTypes.NOW
-        
-    }
+    created_at: {
+        type:DataTypes.DATE
+       
+    },
+    updated_at: {
+        type:DataTypes.DATE
+       
+    },
+   
+},{
+    timestamps: false
 });
 
 export default UsuarioTelegram;

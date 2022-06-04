@@ -4,9 +4,6 @@ const sequelize_1 = require("sequelize");
 const db = new sequelize_1.Sequelize('socket', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
-    define: {
-        timestamps: false
-    },
     pool: {
         max: 5,
         min: 0,
