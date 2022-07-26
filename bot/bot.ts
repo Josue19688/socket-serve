@@ -1,9 +1,11 @@
 require('dotenv').config();
-import {Op,Sequelize, where} from 'sequelize';
+
 import TelegramBot from 'node-telegram-bot-api';
 import UsuarioTelegram from '../models/userTelegram';
 import ServerSocket from '../server/server';
 import MovimientoAgente from '../models/movimientoAgente';
+import MovimientoColaborador from '../models/movimientoColaborador';
+import UsuarioToken from '../models/tokenupdate';
 
 
 
@@ -35,7 +37,45 @@ export  const botTelegram =()=>{
     //     bot.sendDice(msg.chat.id, opts);
     // });
 
-   
+    // bot.on('message', async(msg) => {
+    //     console.log(msg);
+    //    const registro=msg.from?.id;
+    //    const codigo = msg.text;
+
+    //    let resultado = await MovimientoColaborador.findOne({
+    //        where:{
+    //            numero_gafete:codigo
+    //        }
+    //    });
+
+    //    let data = resultado?.toJSON();
+      
+      
+    //         let sede='';
+    //         if(data.sedeOrigen==1){
+    //             sede='ZONA 4';
+    //         }if (data.sedeOrigen==2) {
+    //             sede='ZONA 9';
+    //         }
+
+
+    //         let sedefin='';
+    //         if(data.sedeIngreso==1){
+    //             sedefin='ZONA 4';
+    //         }if (data.sedeIngreso==2) {
+    //             sedefin='ZONA 9';
+    //         }
+
+    //         console.log( data.numero_gafete);
+    //         console.log( sede);
+    //         console.log( sedefin);
+
+    //         var f:string=`Codigo :${data.numero_gafete}\nSEDE ORIGEN :${sede}\nSEDE INGRESO: ${sedefin}\nACCION : INGRESO`;
+    //         bot.sendMessage(msg.chat.id,f);
+       
+           
+    // });
+    
 
 
     
@@ -79,11 +119,12 @@ export  const botTelegram =()=>{
                         const estad= 2;
                      
                       //creamos el registro
-                        MovimientoAgente.create({nombre:de,unico:myId,accion:cuerpo,estado:estad,ingreso:0})
-                        .then(()=>console.log('Insertado Correctamente!!'))
-                        .catch(error=>console.log(error));
-                        
-        
+                       await  MovimientoAgente.create({nombre:de,unico:myId,accion:cuerpo,estado:estad,idultimo:0})
+                       
+
+                       
+
+                        //josue
                         // const datos = movimientosalida.toJSON();
                         // const {fechasalida, nombre, accion,estado}=datos;
         
@@ -113,9 +154,9 @@ export  const botTelegram =()=>{
                             const cuerpo='ingresando';
                             const myId = accionboton.from.id;
                             const de = accionboton.from.first_name;
-                            const estad= 1;
                            
-                            //me traera el maximo id de la tabla
+                           
+                            ///me traera el maximo id de la tabla
                             let busqueda = await MovimientoAgente.max('id',
                             {
                                 where:{
@@ -123,18 +164,22 @@ export  const botTelegram =()=>{
                                 }
                             }
                             );
+
+                            const estad= 1;
+                     
+                            //creamos el registro
+                             await  MovimientoAgente.create({nombre:de,unico:myId,accion:cuerpo,estado:estad,idultimo:busqueda})
                             
-                            await MovimientoAgente.update(
-                                {
-                                    ingreso:1
-                                },
-                                {
-                                    where:{
-                                        id:busqueda
-                                    }
-                                }
-                            ).then(()=>console.log('Actualizado  Correctamente!!'))
-                            .catch(error=>console.log(error));
+                            // await MovimientoAgente.update(
+                            //     {
+                            //         ingreso:1
+                            //     },
+                            //     {
+                            //         where:{
+                            //             id:busqueda
+                            //         }
+                            //     }
+                            // );
 
                             //console.log(busqueda);
                             ///let d = new Date(busqueda);
@@ -148,18 +193,18 @@ export  const botTelegram =()=>{
                           
                             // const server = ServerSocket.instance;
                             // server.io.emit('mensaje-nuevo',payload);
-                            const registros = await MovimientoAgente.findAll({
-                                where:{
-                                    created_at:output
-                                }
-                            });
+                        //     const registros = await MovimientoAgente.findAll({
+                        //         where:{
+                        //             created_at:output
+                        //         }
+                        //     });
             
 
-                           console.log(registros);
+                        //    console.log(registros);
 
 
-                            const server = ServerSocket.instance;
-                            server.io.emit('mensaje-nuevo',registros);
+                            // const server = ServerSocket.instance;
+                            // server.io.emit('mensaje-nuevo',registros);
                             bot.answerCallbackQuery(accionboton.id, {text: 'Reporte de ingreso agregado correctamente', show_alert: true});
                         }   
                           
@@ -197,79 +242,72 @@ export  const botTelegram =()=>{
     //     bot.sendMessage(msg.chat.id, 'Contact and Location request', opts);
     // });
 
-    bot.onText(/^\/getContacto/, (msg) => {
-        const opts:any = {
-          reply_markup: JSON.stringify({
-            keyboard: [
-              [{text: 'Contacto', request_contact: true}],
-            ],
-            resize_keyboard: true,
-            one_time_keyboard: true,
-          }),
-        };
-        bot.sendMessage(msg.chat.id, 'Enviar Contacto para registro de reportes.', opts);
-    });
+    // bot.onText(/^\/getContacto/, (msg) => {
+    //     const opts:any = {
+    //       reply_markup: JSON.stringify({
+    //         keyboard: [
+    //           [{text: 'Contacto', request_contact: true}],
+    //         ],
+    //         resize_keyboard: true,
+    //         one_time_keyboard: true,
+    //       }),
+    //     };
+    //     bot.sendMessage(msg.chat.id, 'Enviar Contacto para registro de reportes.', opts);
+    // });
       
       // Obtenemos la ubicación que nos manda un usuario
-    bot.on('location', (msg) => {
-        console.log(msg.location?.latitude);
-        console.log(msg.location?.longitude);
-    });
+    // bot.on('location', (msg) => {
+    //     console.log(msg.location?.latitude);
+    //     console.log(msg.location?.longitude);
+    // });
       
-      // Obtenemos la información de contacto que nos manda un usuario
-    bot.on('contact', async(msg) => {
+    //   // Obtenemos la información de contacto que nos manda un usuario
+    // bot.on('contact', async(msg) => {
         
-        var chatId=msg.chat.id;
+    //     var chatId=msg.chat.id;
     
         
-        
-        const id = msg.contact?.user_id;
-        const nombre = msg.contact?.first_name;
-        const telefono=msg.contact?.phone_number;
+     
 
-
-
-        try {
-            const usuario = await  UsuarioTelegram.create({id,nombre,telefono});
-            console.log(usuario.toJSON());
-
-        } catch (error) {
-            console.log(error);
-        }
-       
-        bot.sendMessage(chatId,"Registro agregado correctamente. aplicar /reporte para registrar movimientos diarios");
-          console.log("Nombre: " + msg.contact?.first_name + "\nUserID:"  +  msg.contact?.user_id + "\nNúmero Telf: " + msg.contact?.phone_number);
-    });
-
-    /**
-     * PARA PODER CAPTURAR EL REGISTRO DE UN CODIGO DE UN COLABORADOR
-     */
-
-    
-//  bot.on('message', (msg) => {
-//     const codigo = msg.text;
-
-
-
-//    console.log(msg);
-  
-
-// });
-
-
-bot.onText(/^\/borratodo/, (msg) => {
-    console.log(msg);
-    var chatId = msg.chat.id;
-    var messageId:any = msg.message_id;
-    var replyMessage:any = msg.reply_to_message?.message_id;
-    
-    if (msg.reply_to_message == undefined){
-        return;
+    function generateToken(length:any){
+        let rand=()=>Math.random().toString(36).substr(2);
+        return (rand()+rand()+rand()+rand()).substr(0,length)
     }
     
-    bot.deleteMessage(chatId, messageId);
-    //bot.deleteMessage(chatId, replyMessage);
-});
+    // bot.on('contact', async(msg) => {
+        
+    //     var chatId=msg.chat.id;
+    
+        
+        
+    //     const id = msg.contact?.user_id;
+    //     const nombre = msg.contact?.first_name;
+    //     const telefono=msg.contact?.phone_number;
 
+    //     const token = generateToken(11)
+
+    //     try {
+    //         const usuario = await  UsuarioTelegram.create({id,nombre,telefono});
+
+    //         //const registro = await UsuarioTelegramcolaborador.create({idTelegram:telegram,numero:telefono,nombre});
+
+    //         // const agregartoken  = await UsuarioToken.create(
+    //         //     {
+    //         //         idTelegram:telegram,
+    //         //         numero:telefono,
+    //         //         token:token,
+    //         //         estado:1
+    //         //     }
+    //         // );
+    //         console.log(usuario.toJSON());
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+       
+    //     bot.sendMessage(chatId,`Registro agregado correctamente.`,{parse_mode : "HTML"});
+    //       console.log("Nombre: " + msg.contact?.first_name + "\nUserID:"  +  msg.contact?.user_id + "\nNúmero Telf: " + msg.contact?.phone_number);
+    // });
    
 }
+

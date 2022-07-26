@@ -1,35 +1,35 @@
 
-import { DataTypes,Sequelize } from "sequelize";
+import { DataTypes } from "sequelize";
 import db from "../mysql/connection";
 
 
-const MovimientoAgente = db.define('T10_movimientoAgente',{
+const UsuarioToken = db.define('T01_tokenupdate',{
     id:{
         type:DataTypes.INTEGER,
+        autoIncrement:true,
         primaryKey:true
     },
-    nombre:{
+    idTelegram:{
         type:DataTypes.STRING
     },
-    unico:{
+    numero:{
         type:DataTypes.STRING
     },
-    accion:{
+    token:{
         type:DataTypes.STRING
     },
     estado:{
-        type:DataTypes.INTEGER
-    },
-    idultimo:{
-        type:DataTypes.INTEGER
+        type:DataTypes.STRING
     },
     created_at: {
-        type:DataTypes.DATE
-       
+        type:DataTypes.DATE   
     },
+    actualizado:{
+        type:DataTypes.NOW
+    }
    
 },{
     timestamps: false
 });
 
-export default MovimientoAgente
+export default UsuarioToken;

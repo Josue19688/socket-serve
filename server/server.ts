@@ -29,7 +29,7 @@ export default class ServerSocket{
               credentials: true
             }
           });
-        this.dbConnection()
+        this.dbConnection();
         this.escucharSockets();
     }
 

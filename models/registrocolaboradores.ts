@@ -3,29 +3,27 @@ import { DataTypes } from "sequelize";
 import db from "../mysql/connection";
 
 
-const UsuarioTelegram = db.define('T10_usuariosTelegrams',{
+const UsuarioTelegramcolaborador = db.define('T01_usuariosTelegramactualizacion',{
     id:{
         type:DataTypes.INTEGER,
+        autoIncrement:true,
         primaryKey:true
+    },
+    idTelegram:{
+        type:DataTypes.STRING
+    },
+    numero:{
+        type:DataTypes.STRING
     },
     nombre:{
         type:DataTypes.STRING
     },
-    telefono:{
-        type:DataTypes.STRING
-    },
     created_at: {
-        type:DataTypes.DATE
-       
-       
-    },
-    updated_at: {
-        type:DataTypes.DATE
-       
+        type:DataTypes.DATE   
     },
    
 },{
     timestamps: false
 });
 
-export default UsuarioTelegram;
+export default UsuarioTelegramcolaborador;

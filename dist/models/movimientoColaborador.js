@@ -5,30 +5,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../mysql/connection"));
-const MovimientoAgente = connection_1.default.define('T10_movimientoAgente', {
+const MovimientoColaborador = connection_1.default.define('T01_registrosColaboradoresVisitas', {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
-    nombre: {
+    numero_gafete: {
         type: sequelize_1.DataTypes.STRING
     },
-    unico: {
+    sedeOrigen: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    sedeIngreso: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    fechaIngreso: {
+        type: sequelize_1.DataTypes.NOW
+    },
+    usuario: {
         type: sequelize_1.DataTypes.STRING
+    },
+    id_ultimo_movimiento: {
+        type: sequelize_1.DataTypes.INTEGER
     },
     accion: {
-        type: sequelize_1.DataTypes.STRING
-    },
-    estado: {
         type: sequelize_1.DataTypes.INTEGER
-    },
-    idultimo: {
-        type: sequelize_1.DataTypes.INTEGER
-    },
-    created_at: {
-        type: sequelize_1.DataTypes.DATE
-    },
+    }
 }, {
     timestamps: false
 });
-exports.default = MovimientoAgente;
+exports.default = MovimientoColaborador;

@@ -1,16 +1,16 @@
 import ServerSocket from "./server/server";
 import { router } from "./routes/router";
 import bodyparser from "body-parser";
-import express from 'express';
 import cors from "cors";
 import { botTelegram } from './bot/bot';
+import { botTelegramActualizacion } from "./bot/actualizacion_bot";
 
 
 
 
 
 botTelegram();
-
+botTelegramActualizacion();
 
 
 const server = ServerSocket.instance;
