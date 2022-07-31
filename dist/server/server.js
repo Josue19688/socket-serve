@@ -48,7 +48,7 @@ class ServerSocket {
         this.httpServer = new http_1.default.Server(this.app);
         this.io = new socket_io_1.Server(this.httpServer, {
             cors: {
-                origin: "http://localhost:4200",
+                origin: "http://192.168.0.73:4200",
                 allowedHeaders: ["my-custom-header"],
                 credentials: true
             }
@@ -83,6 +83,7 @@ class ServerSocket {
             //o escuchar de los sockets
             socket.desconectar(cliente, this.io);
             socket.mensaje(cliente, this.io);
+            socket.mensaje2(cliente, this.io);
         });
     }
     start(callback) {

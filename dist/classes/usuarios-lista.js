@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserList = void 0;
+// import Capacitaciones from "../models/capacitacionasistencia";
 class UserList {
     constructor() {
         this.lista = [];
     }
     agregar(usuario) {
         this.lista.push(usuario);
-        console.log(this.lista);
+        //console.log(this.lista);
         return usuario;
     }
     actualizarNombre(id, nombre) {

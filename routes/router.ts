@@ -3,6 +3,7 @@ import {Router} from 'express';
 import {check} from 'express-validator';
 import { getLogin } from '../controllers/auth.controller';
 import {getMensajes,mensajes,postMensajes} from '../controllers/mensajesController';
+import { registroMovimiento } from '../controllers/registrosSeguridadController';
 import { getUsuarios,getUsuariosDetalles,getUsuariosDB } from '../controllers/usuariosController';
 import { validarCampos } from '../middlewares/validator-campos';
 
@@ -28,5 +29,6 @@ router.get('/usuarios',getUsuarios);
 router.get('/usuarios/detalle',getUsuariosDetalles);
 router.get('/userdb',getUsuariosDB);
 
-
+/*Rutas para los registros de seguridad */
+router.post('/registroseg',registroMovimiento);
 

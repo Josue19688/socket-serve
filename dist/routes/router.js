@@ -5,6 +5,7 @@ const express_1 = require("express");
 const express_validator_1 = require("express-validator");
 const auth_controller_1 = require("../controllers/auth.controller");
 const mensajesController_1 = require("../controllers/mensajesController");
+const registrosSeguridadController_1 = require("../controllers/registrosSeguridadController");
 const usuariosController_1 = require("../controllers/usuariosController");
 const validator_campos_1 = require("../middlewares/validator-campos");
 exports.router = (0, express_1.Router)();
@@ -20,3 +21,5 @@ exports.router.post('/mensajes/:id', mensajesController_1.postMensajes);
 exports.router.get('/usuarios', usuariosController_1.getUsuarios);
 exports.router.get('/usuarios/detalle', usuariosController_1.getUsuariosDetalles);
 exports.router.get('/userdb', usuariosController_1.getUsuariosDB);
+/*Rutas para los registros de seguridad */
+exports.router.post('/registroseg', registrosSeguridadController_1.registroMovimiento);

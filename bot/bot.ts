@@ -119,24 +119,24 @@ export  const botTelegram =()=>{
                         const estad= 2;
                      
                       //creamos el registro
-                       await  MovimientoAgente.create({nombre:de,unico:myId,accion:cuerpo,estado:estad,idultimo:0})
+                       let movimientosalida=await  MovimientoAgente.create({nombre:de,unico:myId,accion:cuerpo,estado:estad,idultimo:0})
                        
 
                        
 
                         //josue
-                        // const datos = movimientosalida.toJSON();
-                        // const {fechasalida, nombre, accion,estado}=datos;
+                        const datos = movimientosalida.toJSON();
+                        const {fechasalida, nombre, accion,estado}=datos;
         
-                        // const payload={
-                        //     fechasalida, 
-                        //     nombre,
-                        //     myId,
-                        //     accion,
-                        //     estado
-                        // }
-                        // const server = ServerSocket.instance;
-                        // server.io.emit('mensaje-nuevo',payload);
+                        const payload={
+                            fechasalida, 
+                            nombre,
+                            myId,
+                            accion,
+                            estado
+                        }
+                        const server = ServerSocket.instance;
+                        server.io.emit('mensaje-nuevo',payload);
                         // const registros = await MovimientoAgente.findAll({
                         //     where:{
                         //         created_at:{
@@ -168,7 +168,7 @@ export  const botTelegram =()=>{
                             const estad= 1;
                      
                             //creamos el registro
-                             await  MovimientoAgente.create({nombre:de,unico:myId,accion:cuerpo,estado:estad,idultimo:busqueda})
+                            let movimientosalida= await  MovimientoAgente.create({nombre:de,unico:myId,accion:cuerpo,estado:estad,idultimo:busqueda})
                             
                             // await MovimientoAgente.update(
                             //     {
@@ -186,13 +186,22 @@ export  const botTelegram =()=>{
                             
                            // console.log(d.toString());
 
-
+                           const datos = movimientosalida.toJSON();
+                           const {fechasalida, nombre, accion,estado}=datos;
+           
+                           const payload={
+                               fechasalida, 
+                               nombre,
+                               myId,
+                               accion,
+                               estado
+                           }
                           
 
 
                           
-                            // const server = ServerSocket.instance;
-                            // server.io.emit('mensaje-nuevo',payload);
+                            const server = ServerSocket.instance;
+                            server.io.emit('mensaje-nuevo',payload);
                         //     const registros = await MovimientoAgente.findAll({
                         //         where:{
                         //             created_at:output
@@ -274,40 +283,40 @@ export  const botTelegram =()=>{
         return (rand()+rand()+rand()+rand()).substr(0,length)
     }
     
-    // bot.on('contact', async(msg) => {
+    bot.on('contact', async(msg) => {
         
-    //     var chatId=msg.chat.id;
+        var chatId=msg.chat.id;
     
         
         
-    //     const id = msg.contact?.user_id;
-    //     const nombre = msg.contact?.first_name;
-    //     const telefono=msg.contact?.phone_number;
+        const id = msg.contact?.user_id;
+        const nombre = msg.contact?.first_name;
+        const telefono=msg.contact?.phone_number;
 
-    //     const token = generateToken(11)
+        const token = generateToken(11)
 
-    //     try {
-    //         const usuario = await  UsuarioTelegram.create({id,nombre,telefono});
+        try {
+            const usuario = await  UsuarioTelegram.create({id,nombre,telefono});
 
-    //         //const registro = await UsuarioTelegramcolaborador.create({idTelegram:telegram,numero:telefono,nombre});
+            //const registro = await UsuarioTelegramcolaborador.create({idTelegram:telegram,numero:telefono,nombre});
 
-    //         // const agregartoken  = await UsuarioToken.create(
-    //         //     {
-    //         //         idTelegram:telegram,
-    //         //         numero:telefono,
-    //         //         token:token,
-    //         //         estado:1
-    //         //     }
-    //         // );
-    //         console.log(usuario.toJSON());
+            // const agregartoken  = await UsuarioToken.create(
+            //     {
+            //         idTelegram:telegram,
+            //         numero:telefono,
+            //         token:token,
+            //         estado:1
+            //     }
+            // );
+            console.log(usuario.toJSON());
 
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
+        } catch (error) {
+            console.log(error);
+        }
        
-    //     bot.sendMessage(chatId,`Registro agregado correctamente.`,{parse_mode : "HTML"});
-    //       console.log("Nombre: " + msg.contact?.first_name + "\nUserID:"  +  msg.contact?.user_id + "\nNúmero Telf: " + msg.contact?.phone_number);
-    // });
+        bot.sendMessage(chatId,`Registro agregado correctamente.`,{parse_mode : "HTML"});
+          console.log("Nombre: " + msg.contact?.first_name + "\nUserID:"  +  msg.contact?.user_id + "\nNúmero Telf: " + msg.contact?.phone_number);
+    });
    
 }
 

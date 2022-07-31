@@ -1,4 +1,5 @@
 import { Usuario } from "./usuario";
+// import Capacitaciones from "../models/capacitacionasistencia";
 
 export class UserList{
     private lista:Usuario[]=[];
@@ -7,7 +8,10 @@ export class UserList{
 
     public agregar(usuario:Usuario){
         this.lista.push(usuario);
-        console.log(this.lista);
+
+       
+
+        //console.log(this.lista);
         return usuario;
     }
 
@@ -15,6 +19,8 @@ export class UserList{
         for(let usuario of this.lista){
             if(usuario.id===id){
                 usuario.nombre=nombre;
+
+                
                 break;
             }
         }
