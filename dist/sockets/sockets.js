@@ -31,6 +31,8 @@ const mensaje = (cliente, io) => {
     });
 };
 exports.mensaje = mensaje;
+///metodo socket para seguridad y su vista de datos en tiempo real 
+////registro de ingreso de personal 
 const mensaje2 = (cliente, io) => {
     cliente.on('mensaje2', (payload) => {
         console.log('Mensaje recibido', payload); //esto nos trae el nombre de usuarios qeu dira presente

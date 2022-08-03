@@ -1,4 +1,4 @@
-
+/*CON ESTO IRIA A LA BASE DE DATOS A TRAER EL REGISTRO REALIZADO TODO SE HARA EN EL CONTROLADOR */
 import { DataTypes,Sequelize } from "sequelize";
 import db from "../mysql/connection";
 
@@ -36,4 +36,4 @@ const MovimientoColaborador = db.define('T01_registrosColaboradoresVisitas',{
     timestamps: false
 });
 
-export default MovimientoColaborador
+export default MovimientoColaborador;

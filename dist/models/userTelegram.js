@@ -19,9 +19,6 @@ const UsuarioTelegram = connection_1.default.define('T10_usuariosTelegrams', {
     created_at: {
         type: sequelize_1.DataTypes.DATE
     },
-    updated_at: {
-        type: sequelize_1.DataTypes.DATE
-    },
 }, {
     timestamps: false
 });

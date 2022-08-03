@@ -9,7 +9,7 @@ import { botTelegramActualizacion } from "./bot/actualizacion_bot";
 
 
 
-//botTelegram();
+botTelegram();
 botTelegramActualizacion();
 
 

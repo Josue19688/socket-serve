@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/*CON ESTO IRIA A LA BASE DE DATOS A TRAER EL REGISTRO REALIZADO TODO SE HARA EN EL CONTROLADOR */
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../mysql/connection"));
 const MovimientoColaborador = connection_1.default.define('T01_registrosColaboradoresVisitas', {

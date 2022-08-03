@@ -19,10 +19,7 @@ const UsuarioTelegram = db.define('T10_usuariosTelegrams',{
        
        
     },
-    updated_at: {
-        type:DataTypes.DATE
-       
-    },
+   
    
 },{
     timestamps: false

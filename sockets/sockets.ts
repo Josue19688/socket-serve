@@ -36,6 +36,9 @@ export const mensaje=(cliente:Socket, io:socketIO.Server)=>{
     })
 }
 
+
+///metodo socket para seguridad y su vista de datos en tiempo real 
+////registro de ingreso de personal 
 export const mensaje2=(cliente:Socket, io:socketIO.Server)=>{
     cliente.on('mensaje2',(payload:{de:string, cuerpo:string})=>{
         console.log('Mensaje recibido', payload);//esto nos trae el nombre de usuarios qeu dira presente

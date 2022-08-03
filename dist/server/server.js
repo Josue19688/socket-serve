@@ -48,7 +48,7 @@ class ServerSocket {
         this.httpServer = new http_1.default.Server(this.app);
         this.io = new socket_io_1.Server(this.httpServer, {
             cors: {
-                origin: "http://192.168.0.73:4200",
+                origin: ["http://192.168.0.73:4200", "https://192.168.0.72/digici_full/admin/seguridad/IngresosV1.php"],
                 allowedHeaders: ["my-custom-header"],
                 credentials: true
             }
