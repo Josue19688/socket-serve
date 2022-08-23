@@ -4,8 +4,8 @@ import  {Sequelize} from 'sequelize';
 
 
 
-const db = new Sequelize('digici_full','rescobar','rescobar123',{
-    host:'192.168.0.29',
+const db = new Sequelize('xxxxx','xxxxxxx','xxxxxxxxx',{
+    host:'xxxxxxxx',
     dialect:'mysql',
     pool:{
         max:5,
